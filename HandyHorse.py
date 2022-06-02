@@ -1,8 +1,19 @@
 
 
-def amount_of_possible_numbers(start_number, number_of_moves):
+def amount_of_possible_numbers(start_number: int, number_of_moves: int):
 
-    
+    if not isinstance(start_number, int):
+        raise TypeError("The start_number can only be of type int")
+
+    if not isinstance(number_of_moves, int):
+        raise TypeError("The number_of_moves can only be of type int")
+
+    if not start_number in range(0, 9):
+        raise TypeError("The start number needs to be in range 0-9")
+
+    if  number_of_moves < 0:
+        raise TypeError("The number of moves can't be negative")
+
     ecken = 0
     rand_kann_null = 0
     rand = 0
@@ -23,7 +34,10 @@ def amount_of_possible_numbers(start_number, number_of_moves):
         null_taste += 1
 
     if start_number == 5:
-        return 1
+        if number_of_moves == 0:
+            return 1
+        else:
+            return 0
 
 
     for _ in range(number_of_moves):
@@ -37,10 +51,7 @@ def amount_of_possible_numbers(start_number, number_of_moves):
             null_taste = new_null
 
     possible_numbers = ecken + rand_kann_null + rand + null_taste
-    #print(f'Ecken = {ecken}')
-    #print(f'Randkannnull = {rand_kann_null}')
-    #print(f'Rand = {rand}')
-    #print(f'Null = {null_taste}')
+    
 
     
     return possible_numbers
